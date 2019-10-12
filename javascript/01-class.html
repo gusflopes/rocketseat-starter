@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<h1>Rocketseat - Curso JavaScript Starter</h1> 
+
+<div id="app1" class="box" style="margin-top: 40px">
+  <h2>Query Selector usage</h2>
+  <input type="text" name="text" />
+  <button class="btn">Click me!</button>
+</div>
+
+<div id="app2" class="box" style="margin-top: 40px">
+  <h2>Creating Elements</h2>
+
+</div>
+
+
+<script>
+  //Style
+  var boxElement = document.querySelector('.box');
+  boxElement.style.width = 100;
+  boxElement.style.backgroundColor = '#000';
+  
+
+
+  //Reference and alert
+  var btnElement = document.querySelector('div#app1 button.btn');
+  var inputElement = document.querySelector('div#app1 input[name=text]');
+
+  btnElement.onclick = function() {
+    var text = inputElement.value;
+    alert(text);
+  }
+
+  //
+  var linkElement = document.createElement('a');
+  linkElement.setAttribute('href', 'https://gusflopes.dev/');
+  var textElement = document.createTextNode('Access my site');
+  linkElement.appendChild(textElement);
+  var containerElement = document.querySelector('#app2');
+  containerElement.appendChild(linkElement);
+
+</script>
+
+</body>
+</html>

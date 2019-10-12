@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Rocketseat - Javascript - Challenge #01</title>
+</head>
+<body>
+  <header>
+      <h1><a href="https://rocketseat.com.br" target="_blank" style="text-decoration: none">Rocketseat</a> - Módulo 01 - Desafios</h1>
+  </header>
+
+  <div class="input">
+    <h2>Instructions</h2>
+    <span>For now the results are static using the informations provided by Rocketseat.</span>
+  </div>
+
+  <div class="examples">
+    <h2>Actions/Answers</h2>
+    <span>Open the Console for these exercises.</span><br/>
+    <button onclick="ex01()">Exercício 01</button>
+    <button onclick="pares(32,321)">Exercício 02</button>
+    <button onclick="ex03('Javascript')">Exercício 03</button>
+    <button onclick="ex04(4)">Exercício 04</button>
+    <button onclick="ex05()">Exercício 05</button>
+  </div>
+
+  <div class="tasks">
+    <h2>Challenges</h2>
+      <object
+        data="https://skylab.rocketseat.com.br/api/files/1566498717618.pdf"
+        type="application/pdf"
+        width="650"
+        height="400"
+      > alt : <a href="https://skylab.rocketseat.com.br/api/files/1566498717618.pdf">
+        Desafios.pdf</a>
+    </object>
+  </div>
+
+  <div class="Contact">
+    <h2>Contact</h2>
+    <span>This page was developed by Gustavo Lopes during the Rocketseat Starter Course.</span><br/>
+    <span>Github: <a href="https://github.com/gusflopes" target="_blank">https://github.com/gusflopes</a></span>
+  </div>
+  
+<script>
+  // Rocketseat content
+  var endereco = {
+  rua: "Rua dos pinheiros",
+  numero: 1293,
+  bairro: "Centro",
+  cidade: "São Paulo",
+  uf: "SP"
+  };
+
+  var skills = ["Javascript", "ReactJS", "React Native"];
+
+  var usuarios = [
+    {
+      nome: "Diego",
+      habilidades: ["Javascript", "ReactJS", "Redux"]
+    },
+    {
+      nome: "Gabriel",
+      habilidades: ["VueJS", "Ruby on Rails", "Elixir"]
+    }
+    ];  
+
+  // SCRIPTS
+  // Exercicio 01
+  function ex01() {
+    console.log(`O usuário mora em ${endereco.cidade}/${endereco.uf}, no bairro ${endereco.bairro} na ${endereco.rua} com n. ${endereco.numero}.`);
+  }
+
+  //Exercicio 02
+  function pares(x, y) {
+    console.log(`Pares: x = ${x} e y = ${y}`);
+    //code
+    var result = [];
+    var message = 'Os seguintes números são pares: ';
+    for (i = x; i < y; i++) {
+      if (i %2 === 0) {
+        result.push(i);
+        message = message + i + ', ';
+      }
+    }
+    var newMessage = message.slice(0, -2);
+    newMessage = newMessage + '.';
+    console.log('Retornando objeto:')
+    console.log(result);
+    console.log('Retornando string:')
+    console.log(newMessage);
+  };
+
+  //Exercicio 03
+  function ex03(skill) {
+    result = (skills.indexOf(skill) > -1);
+    console.log(result);
+  }
+
+  //Exercicio 04
+  //Return the experience level based on the years of experience.
+  function ex04(years) {
+    // 0-1: iniciante; 1-3: intermediario; 3-6: avançado; 7+: Jedi Master
+    experienceIndex = [1, 3, 6, 7];
+    experienceDescription = ['Iniciante', 'Intermediário', 'Avançado', 'Jedi Master'];
+
+    var experience = experienceIndex.findIndex((index) => {
+      return index >= years;
+    });
+    if (experience === -1) {
+      experienceTitle = experienceDescription[3];
+      console.log(experienceTitle);
+    } else {
+      experienceTitle = experienceDescription[experience];
+      console.log(experienceTitle);
+    }
+  }
+
+  //Exercicio 05
+  //Users and skills using For...of and join
+  function ex05() {
+    for (user of usuarios) {
+      console.log(`O ${user.nome} possui as habilidades: ${(user.habilidades).join(', ')}.`);
+    }
+  }
+</script>
+
+</body>
+</html>
