@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Rocketseat - Javascript - Challenge #02</title>
+</head>
+<body>
+  <header>
+      <h1>
+        <a
+          href="https://rocketseat.com.br"
+          target="_blank"
+          style="text-decoration: none"
+        >Rocketseat</a> - Módulo 02 - Desafios</h1>
+  </header>
+
+  <div class="instructions">
+    <h2>Instructions</h2>
+    <span>Not ready</span><br/>
+    <span>For now the results are static using the informations provided by Rocketseat.</span>
+  </div>
+
+  <div class="app">
+    <h2>Actions/Answers</h2>
+    <span>Open the Console for these exercises.</span><br/>
+    <input type="text" name="user"><br/>
+    <button onclick="getGithub()">Exercício 01</button>
+  </div>
+
+  <div class="render">
+    <div class="user">
+
+    </div>
+    <div class="repos">
+      
+    </div>
+  </div>
+  <!--
+  <div class="tasks">
+    <h2>Challenges</h2>
+      <object
+        data="https://skylab.rocketseat.com.br/api/files/1566499182493.pdf"
+        type="application/pdf"
+        width="650"
+        height="400"
+      > alt :
+        <a
+          href="https://skylab.rocketseat.com.br/api/files/1566499182493.pdf"
+        >Desafios.pdf</a>
+    </object>
+  </div>
+  -->
+
+  <div class="Contact">
+    <h2>Contact</h2>
+    <span>This page was developed by Gustavo Lopes during the Rocketseat Starter Course.</span><br/>
+    <span>Github: <a
+      href="https://github.com/gusflopes" 
+      target="_blank"
+      >https://github.com/gusflopes</a></span>
+  </div>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  async function getGithub() {
+    var user = document.querySelector('input[name="user"]').value;
+
+    await axios.get(`https://api.github.com/users/${user}`)
+    .then(function(response) {
+      console.log(response);
+      var user = response;
+      })
+      .catch(function(error) {
+        console.warn(error);
+      });
+ 
+    //Fetch repositories now
+    axios.get(`https://api.github.com/users/${user}/repos`)
+    .then(function(response) {
+      console.log(response);
+      var repos = response;
+      //console.log(response.data.avatar_url);
+    })
+    .catch(function(error) {
+      console.warn(error);
+    });
+  }
+  
+  
+  /*
+    console.log('Usuário');
+    console.log(user);
+    console.log('Repositories');
+    console.log(repos);
+    */
+
+
+</script>
+
+</body>
+</html>

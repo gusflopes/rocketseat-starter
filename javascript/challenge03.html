@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Rocketseat - Javascript - Challenge #02</title>
+  <title>Rocketseat - Javascript - Challenge #03</title>
 </head>
 <body>
   <header>
@@ -13,34 +13,22 @@
           href="https://rocketseat.com.br"
           target="_blank"
           style="text-decoration: none"
-        >Rocketseat</a> - Módulo 02 - Desafios</h1>
+        >Rocketseat</a> - Módulo 03 - Desafios</h1>
   </header>
 
   <div class="input">
     <h2>Instructions</h2>
-    <span>Not ready</span><br/>
-    <span>For now the results are static using the informations provided by Rocketseat.</span>
+    <span>Create a Todo App using HTML5 and Javascript and save on localStorage</span><br/>
   </div>
 
-  <div class="examples">
-    <h2>Actions/Answers</h2>
-    <span>Open the Console for these exercises.</span><br/>
-    <button onclick="ex01()">Exercício 01</button>
+  <div id="app">
+    <h2>Todo App</h2>
+    <ul>
+    </ul>
+    <input type="text" placeholder="Digite uma tarefa">
+    <button>Adicionar</button>
   </div>
 
-  <div class="tasks">
-    <h2>Challenges</h2>
-      <object
-        data="https://skylab.rocketseat.com.br/api/files/1566499161406.pdf"
-        type="application/pdf"
-        width="650"
-        height="400"
-      > alt :
-        <a
-          href="https://skylab.rocketseat.com.br/api/files/1566499161406.pdf"
-        >Desafios.pdf</a>
-    </object>
-  </div>
 
   <div class="Contact">
     <h2>Contact</h2>
@@ -52,9 +40,66 @@
   </div>
   
 <script>
-  function ex01() {
-    alert('Pendente.');
-  }
+
+var listElement = document.querySelector('#app ul');
+var inputElement = document.querySelector('#app input');
+var btnElement = document.querySelector('#app button');
+
+var todos = JSON.parse(localStorage.getItem('list_todos')) || [];
+
+btnElement.onclick = addTodo;
+
+function renderTodos() {
+
+    // Remover todo o conteúdo
+    listElement.innerHTML = '';
+    // Renderizar tudo
+    for (todo of todos) {
+        //console.log(todo);
+        var todoElement = document.createElement('li');
+        var todoText = document.createTextNode(todo);
+
+        var linkElement = document.createElement('a');
+
+        linkElement.setAttribute('href', '#');
+
+        var pos = todos.indexOf(todo);
+        linkElement.setAttribute('onclick', 'deleteTodo(' + pos + ')');
+
+        var linkText = document.createTextNode('Excluir');
+
+        linkElement.appendChild(linkText);
+        todoElement.appendChild(todoText);
+        var separator = document.createTextNode(' - ');
+
+        todoElement.appendChild(separator);
+        todoElement.appendChild(linkElement);
+        listElement.appendChild(todoElement);
+    }
+}
+
+function addTodo() {
+    var todoText = inputElement.value;
+
+    todos.push(todoText);
+    inputElement.value = '';
+    renderTodos();
+    saveToStorage();
+}
+
+function deleteTodo(pos) {
+    todos.splice(pos, 1);
+    renderTodos();
+    saveToStorage();
+}
+
+function saveToStorage() {
+    localStorage.setItem('list_todos', JSON.stringify(todos));
+}
+
+
+renderTodos();
+
 </script>
 
 </body>
