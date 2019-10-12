@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Rocketseat - Javascript - Challenge #02</title>
+</head>
+<body>
+  <header>
+      <h1>
+        <a
+          href="https://rocketseat.com.br"
+          target="_blank"
+          style="text-decoration: none"
+        >Rocketseat</a> - Módulo 02 - Desafios</h1>
+  </header>
+
+  <div class="input">
+    <h2>Instructions</h2>
+    <ul>
+      <li>Click button "Exercicio 01" to create a square.</li>
+      <li>Button "Exercicio 02" toggles the changing colors function ON/OFF</li>
+      <li>Button "Exercicio 03" renders the UL from Exercise 03.</li>
+      <li>Button "Exercicio 04" updates the UL with the provided name on the input.</li>
+    </ul>
+  </div>
+
+  <div class="examples">
+    <h2>Actions/Answers</h2>
+    <span>
+      <label>Input for Exercise 04: </label>
+      <input type="text" name="nome" placeholder="Insert name for Exercise 04">
+    </span><br/>
+    <button id="btn01">Exercício 01</button>
+    <button id="btn02">Exercício 02</button>
+    <button id="btn03">Exercício 03</button>
+    <button id="btn04">Exercício 04</button>
+  </div>
+
+  <h2>Results:</h2>
+  <div id="result">
+    
+  </div>
+  <div class="tasks">
+    <h2>Challenges</h2>
+      <object
+        data="https://skylab.rocketseat.com.br/api/files/1566499161406.pdf"
+        type="application/pdf"
+        width="650"
+        height="400"
+      > alt :
+        <a
+          href="https://skylab.rocketseat.com.br/api/files/1566499161406.pdf"
+        >Desafios.pdf</a>
+    </object>
+  </div>
+  
+  -->
+
+  <div class="Contact">
+    <h2>Contact</h2>
+    <span>This page was developed by Gustavo Lopes during the Rocketseat Starter Course.</span><br/>
+    <span>Github: <a
+      href="https://github.com/gusflopes" 
+      target="_blank"
+      >https://github.com/gusflopes</a></span>
+  </div>
+  
+  <script>
+    //Provided code
+    function getRandomColor() {
+      var letters = "0123456789ABCDEF";
+      var color = "#";
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+    var newColor = getRandomColor(); // #E943F0
+
+    var nomes = ["Diego", "Gabriel", "Lucas"];
+
+    //Solutions
+    var colorStatus = false;
+    var i = 0;
+    var ul = false;
+
+    var bnt04 = document.querySelector('#btn04');
+    btn04.onclick = function() {
+      var ulElement = document.querySelector('ul#answer');
+      // Was the ul already rendered?
+      if (ulElement === null) {
+        alert('Ul from Exercise 03 needs to be rendered.');
+      } else {
+          //Getting value from input
+          var inputElement = document.querySelector('input[name="nome"]');
+          if (inputElement.value === "") {
+            alert('Please type a name on the input.');
+            } else {
+                var name = inputElement.value;
+                var liElement = document.createElement('li');
+                var txtElement = document.createTextNode(name);
+                liElement.appendChild(txtElement);
+                ulElement.appendChild(liElement);
+                //Cleaning the input
+                inputElement.value = "";
+              }
+        }
+      };
+          //var name = inputElement.value;
+          //Updating the list
+    
+
+  
+
+    var btn03 = document.querySelector('#btn03');
+    btn03.onclick = function() {
+      if (ul === false) {
+        var ulElement = document.createElement('ul');
+        ulElement.id = "answer";
+
+        nomes.map((name) => {
+          var liElement = document.createElement('li');
+          var txtElement = document.createTextNode(name);
+          liElement.appendChild(txtElement);
+          ulElement.appendChild(liElement);
+        });
+        //console.log(ulElement);
+        var containerElement = document.querySelector('#result');
+        containerElement.appendChild(ulElement);
+        ul = true;
+      } else { alert('List has already been rendered.')}
+    }
+
+    var btn02 = document.querySelector('#btn02');
+    btn02.onclick = () => { colorStatus === false ? colorStatus = true : colorStatus = false }
+
+    var btn01 = document.querySelector('#btn01');
+    btn01.onclick = function() {
+      //Create div
+      var boxElement = document.createElement('div');
+
+      //Append on the "Answer" Div
+      var containerElement = document.querySelector('#result');
+      containerElement.appendChild(boxElement);
+
+      //Style the boxElement
+      boxElement.style.width = "100px";
+      boxElement.style.height = "100px";
+      boxElement.style.backgroundColor = '#ff0000';
+      boxElement.className = "box";
+      boxElement.id = "box-" + i;
+      boxElement.onmouseover = function() {
+        if (colorStatus === true) {
+        var newColor = getRandomColor();
+        boxElement.style.backgroundColor = newColor;
+        }
+      }
+      //console.log(boxElement);
+      i++;
+    }
+
+  </script>
+
+</body>
+</html>
